@@ -1,135 +1,82 @@
-// window.addEventListener("load", () => {
-//     const path = document.querySelector("svg path");
-  
-//     path.addEventListener("animationend", () => {
-//       const texts = document.querySelectorAll("#tagline .word");
-  
-//       gsap.to(texts[0], {
-//         opacity: 1,
-//         scale: 1,
-//         y: 0,
-//         duration: 1,
-//         delay: 0.3
-//       });
-  
-//       gsap.to(texts[1], {
-//         opacity: 1,
-//         scale: 1,
-//         y: 0,
-//         duration: 1,
-//         delay: 1.5
-//       });
-  
-//       gsap.to(texts[2], {
-//         opacity: 1,
-//         scale: 1,
-//         y: 0,
-//         duration: 1,
-//         delay: 2.7,
-//         onComplete: () => {
-//           // Hide loader, show main
-//           gsap.to("#loader-container", {
-//             y: "-100%",
-//             duration: 1,
-//             ease: "power2.inOut"
-//           });
-  
-//           gsap.to("#main-content", {
-//             opacity: 1,
-//             y: 0,
-//             duration: 1,
-//             delay: 0.5
-//           });
-//         }
-//       });
-//     });
-//   });
-
-
-
-
-
 window.addEventListener("load", () => {
-  document.body.style.overflow = "hidden"; // 🔒 prevent scroll
+  document.body.style.overflow = "hidden";
 
   const path = document.querySelector("svg path");
-
-  // Optional: If SVG animation is triggered by CSS, make sure its duration matches (2s in this example)
 
   path.addEventListener("animationend", () => {
     const texts = document.querySelectorAll("#tagline .word");
 
-    // First word appears at ~0.3s after path ends
+    
     gsap.to(texts[0], {
       opacity: 1,
       scale: 1,
       y: 0,
-      duration: 0.8,
-      delay: 0.3
+      duration: 0.5,
+      delay: 0.1
     });
 
-    // Second word after ~1s
+   
     gsap.to(texts[1], {
       opacity: 1,
       scale: 1,
       y: 0,
-      duration: 0.8,
-      delay: 1.2
+      duration: 0.5,
+      delay: 0.6
     });
 
-    // Third word after ~1.9s
+    
     gsap.to(texts[2], {
       opacity: 1,
       scale: 1,
       y: 0,
-      duration: 0.8,
-      delay: 2.1,
+      duration: 0.5,
+      delay: 1.1,
       onComplete: () => {
-        // ⬇ Smoothly slide out loader
+       
         gsap.to("#loader-container", {
           y: "-100%",
-          duration: 1,
+          duration: 0.7,
           ease: "power2.inOut",
           onComplete: () => {
-            // ✅ Remove loader, allow scroll
             document.getElementById("loader-container").style.display = "none";
             document.body.style.overflow = "auto";
             window.scrollTo(0, 0);
           }
         });
 
-        // ⬇ Show main content
+      
         gsap.to("#main-content", {
           opacity: 1,
           y: 0,
-          duration: 1,
-          delay: 0.3
+          duration: 0.6,
+          delay: 0.1
         });
       }
     });
   });
 });
 
+
   const hobbies = [
     {
       iconClass: 'fas fa-chess',
       text: 'Chess Enthusiast',
-      subtitle: 'Learning new tactics whenever I can.'
+      subtitle: 'Learning new tactics and openings whenever I can.'
     },
     {
       iconClass: 'fas fa-book-open',
       text: 'Writing Novels',
-      subtitle: 'Working on my novel since 2020.'
+      subtitle: 'Working on my novel cum passion since 2020.'
     },
     {
       iconClass: 'fas fa-language',
       text: 'Learning French',
-      subtitle: 'Bonjour, bienvenue sur mon site Web..'
+      subtitle: 'Bonjour, bienvenue sur mon merveilleux site Web'
     },
     {
       iconClass: 'fas fa-code',
       text: 'Coding Geek',
-      subtitle: 'Building creative solutions with code.'
+      subtitle: 'Building creative and innovative solutions with code.'
     }
   ];
   
@@ -140,7 +87,7 @@ window.addEventListener("load", () => {
   let currentIndex = 0;
   
   function rotateHobby() {
-    // Animate current hobby up and fade out
+   
     const timeline = gsap.timeline();
   
     timeline.to('.hobby-rotator', {
@@ -156,7 +103,7 @@ window.addEventListener("load", () => {
       opacity: 0,
       ease: 'power1.in',
       onComplete: () => {
-        // Update hobby content
+       
         currentIndex = (currentIndex + 1) % hobbies.length;
         const hobby = hobbies[currentIndex];
   
@@ -164,12 +111,12 @@ window.addEventListener("load", () => {
         textEl.textContent = hobby.text;
         subtitleEl.textContent = hobby.subtitle;
   
-        // Reset position and opacity below before animating back in
+       
         gsap.set(['.hobby-rotator', '.hobby-subtitle'], { y: 30, opacity: 0 });
       }
     });
   
-    // Animate new hobby back in from below
+   
     timeline.to(['.hobby-rotator', '.hobby-subtitle'], {
       duration: 0.6,
       y: 0,
@@ -181,9 +128,64 @@ window.addEventListener("load", () => {
     return timeline;
   }
   
-  // Start the rotation and repeat every 4 seconds
+  
   rotateHobby();
   setInterval(rotateHobby, 2500);
   
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      const tl = gsap.timeline();
+  
+    
+      tl.from(".tagline1", {
+    
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.5")
+  
+     
+      .from(".name ", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.4")
+  
 
+      .from(".location", {
+      
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.6")
+  
+  
+      .from(".btn", {
+        scale: 0,
+        opacity: 0,
+        duration: 0.6,
+        ease: "back.out(1.7)"
+      }, "-=0.4")
+  
+     
+      .from(".resume-button", {
+        
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.out"
+      }, "-=0.3")
+  
+   
+      .from(".social-icons a", {
+        
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.6,
+        ease: "power2.out"
+      }, "-=0.5");
+      
+    }, 3900);
+  });
+  
 
