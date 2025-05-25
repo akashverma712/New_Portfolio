@@ -822,7 +822,6 @@ nav .nav-icon {
 
 .projects-section {
   padding: 80px 20px;
- 
   color: #fff;
   text-align: center;
 }
@@ -832,10 +831,7 @@ nav .nav-icon {
   margin-bottom: 30px;
   position: relative;
   display: inline-block;
-  color: white; 
-  
   font-weight: 700;
-  
   padding-bottom: 8px;
   letter-spacing: 1px;
 }
@@ -860,7 +856,7 @@ nav .nav-icon {
   justify-content: center;
   align-items: stretch;
   padding: 40px 20px;
-  width:100% !important;
+  width: 100%;
   background-color: transparent;
 }
 
@@ -902,12 +898,8 @@ nav .nav-icon {
 }
 
 @keyframes floatDots {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-20px, -20px);
-  }
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-20px, -20px); }
 }
 
 .project-card:hover {
@@ -917,8 +909,9 @@ nav .nav-icon {
 
 .project-img {
   width: 100%;
-  height: 180px;
+  aspect-ratio: 16 / 9; /* 🔥 Ensures perfect responsiveness */
   object-fit: cover;
+  display: block;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
 }
@@ -962,6 +955,7 @@ nav .nav-icon {
   color: #b3b3b3;
 }
 
+/* ===== Responsive Tweaks ===== */
 
 @media (max-width: 1024px) {
   .projects-grid {
@@ -981,5 +975,17 @@ nav .nav-icon {
 
   .projects-grid a.project-link {
     max-width: 90%;
-  }}
+  }
 
+  .project-img {
+    aspect-ratio: 16 / 10;
+  }
+
+  .project-name {
+    font-size: 1.2rem;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+  }
+}
